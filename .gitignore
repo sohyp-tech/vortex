@@ -1,0 +1,17 @@
+__pycatche__/
+
+*.db/
+*.sqlite
+*.sqlite3
+
+users.db
+posts.db
+comments.db
+
+venv/
+.venv/
+
+.env
+.env.*
+
+.vscode/
