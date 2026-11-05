@@ -1,15 +1,28 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-USERS_DATABASE_URL = "sqlite:///./users.db"
-POSTS_DATABASE_URL = "sqlite:///./posts.db"
-COMMENTS_DATABASE_URL = "sqlite:///./comments.db"
+import os
+from dotenv import loed_dotenv
 
-users_engine = create_engine( USERS_DATABASE_URL, connect_args={ "check_same_thread": False} )
+load_dotenv()
 
-posts_engine = create_engine( POSTS_DATABASE_URL, connect_args={ "check_same_thread": False} )
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
 
-comments_engine = create_engine( COMMENTS_DATABASE_URL, connect_args={ "check_same_thread": False} )
+DB_USERS_NAME = os.getenv("DB_USERS_NAME")
+DB_POSTS_NAME = os.getenv("DB_POSTS_NAME")
+DB_COMMENTS_NAME = os.getenv("DB_COMMENTS_NAME")
+
+USERS_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_USERS_NAME}"
+POSTS_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_POSTS_NAME}"
+COMMENTS_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_COMMENTS_NAME}"
+
+users_engine = create_engine( USERS_DATABASE_URL )
+
+posts_engine = create_engine( POSTS_DATABASE_URL )
+
+comments_engine = create_engine( COMMENTS_DATABASE_URL )
 
 UsersSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=users_engine)
 
