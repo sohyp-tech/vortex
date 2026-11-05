@@ -35,6 +35,8 @@ vortex/
 │   │   ├── posts.py
 │   │   └── users.py
 │   └── main.py
+└── .gitignore
+└── .env.example
 └── README.md
 ```
 
